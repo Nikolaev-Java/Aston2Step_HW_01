@@ -68,13 +68,17 @@ public class CustomArrayList<T> implements CustomList<T> {
      */
     @Override
     public void add(int index, T elem) {
-        checkIndex(index);
-        checkFullness();
-        for (int i = size; i > index; i--) {
-            elementData[i] = elementData[i - 1];
+        if(index == size){
+            add(elem);
+        }else {
+            checkIndex(index);
+            checkFullness();
+            for (int i = size; i > index; i--) {
+                elementData[i] = elementData[i - 1];
+            }
+            elementData[index] = elem;
+            size++;
         }
-        elementData[index] = elem;
-        size++;
     }
 
     /**
@@ -178,7 +182,6 @@ public class CustomArrayList<T> implements CustomList<T> {
             throw new IndexOutOfBoundsException("an impossible index value");
         }
     }
-
     private int getIndex(T elem) {
         for (int i = 0; i < size; i++) {
             if (elementData[i].equals(elem)) {

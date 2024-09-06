@@ -64,6 +64,7 @@ class CustomArrayListTest {
         int actualElement = list.get(randomIndex);
         //when
         list.add(randomIndex, randomElement);
+
         //then
         assertThat(list.get(randomIndex)).isEqualTo(randomElement);
         assertThat(list.get(randomIndex + 1)).isEqualTo(actualElement);
@@ -154,5 +155,16 @@ class CustomArrayListTest {
         //then
         assertThat(list).isEmpty();
     }
-
+    @Test
+    @DisplayName("Adding an element by index to the end of the list functionality")
+    void givenObject_whenAddByIndexInLastPosition_thenCorrect() {
+        //given
+        CustomList<Object> objects = new CustomArrayList<>();
+        //when
+        for (int i = 0; i < 10000; i++) {
+            objects.add(0, new Object());
+        }
+        //then
+        assertThat(objects.size()).isEqualTo(10000);
+    }
 }
